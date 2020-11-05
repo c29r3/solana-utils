@@ -1,0 +1,66 @@
+mkdir -p /home/solana-mb/solana; cd /home/solana-mb/solana
+
+### положить validator-keypair.json в ~/solana/
+
+curl -sSf https://raw.githubusercontent.com/solana-labs/solana/v1.1.9/install/solana-install-init.sh | sh -s - v1.3.19; \
+echo 'export PATH="/home/solana-mb/.local/share/solana/install/active_release/bin:$PATH"' >> /home/solana-mb/.profile; \
+source /home/solana-mb/.profile; \
+curl -s https://raw.githubusercontent.com/c29r3/solana-utils/main/mb-solana.service > solana-mb.service; \
+sudo ln -sf /home/solana-mb/solana/solana-mb.service /etc/systemd/system/; \
+sudo systemctl daemon-reload && sudo systemctl enable solana-mb.service; \
+solana config set --url https://api.mainnet-beta.solana.com --keypair /home/solana-mb/solana/validator-keypair.json; \
+solana balance; solana-gossip spy --entrypoint mainnet-beta.solana.com:8001
+
+
+### по-хорошему это конечно надо как-то автоматизировать, в сервис засунуть, еще как-то, но у них прямо так:
+### https://docs.solana.com/running-validator/validator-start#tune-system
+solana-sys-tuner --user $(whoami) > sys-tuner.log 2>&1 &
+
+
+### create vote account - https://docs.solana.com/running-validator/validator-start#create-vote-account
+solana-keygen new -o vote-account-keypair.json && solana create-vote-account vote-account-keypair.json validator-keypair.json
+
+
+### запускаем сервис и убеждаемся по логам что всё ок
+sudo systemctl start solana-mb && sudo journalctl -u solana-mb -f --no-hostname
+
+
+### ждём синхронизации
+while true; do echo "______________ $(TZ=UTC date) ______________"; du -sh ~/solana/validator-ledger/ 2>/dev/null; timeout 30 solana catchup ~/solana/validator-keypair.json http://127.0.0.1:8999/ || echo timeout; timeout 30 solana block-production --url http://127.0.0.1:8999 --epoch $(solana epoch )  | grep -e " Identity Pubkey\|$(solana-keygen pubkey ~/solana/validator-keypair.json)"; sleep 60; done
+
+
+### create stake keypair - https://docs.solana.com/running-validator/validator-stake#create-stake-keypair
+solana-keygen new -o validator-stake-keypair.json && cat validator-stake-keypair.json &&echo
+
+
+### delegate
+solana create-stake-account validator-stake-keypair.json 0.5 && solana delegate-stake validator-stake-keypair.json vote-account-keypair.json
+
+
+### view your vote account:
+solana vote-account vote-account-keypair.json
+
+
+###View your stake account, the delegation preference and details of your stake:
+solana stake-account validator-stake-keypair.json
+
+
+### publish info about validator
+solana validator-info publish "<some name that will show up in explorer>" -n <keybase_username> -w "<website>"
+### example:
+###solana validator-info publish "Elvis Validator" -n elvis -w "https://elvis-validates.com"
+### solana validator-info publish "c29r3" -n not2day
+
+
+echo "export SOLANA_ADDRESS=$(solana-keygen pubkey /home/solana-mb/solana/validator-keypair.json)" | tee -a ~/.bashrc 
+echo export SOLANA_VALIDATOR_INFO_PUBKEY=$(solana validator-info get | grep "$(solana-keygen pubkey /home/solana-mb/solana/validator-keypair.json)" -A5 | grep "Info Pubkey" | awk '{ print $3}') && source ~/.bashrc
+
+clear \
+&& solana stakes /home/solana-mb/solana/vote-account-keypair.json  --url http://127.0.0.1:8999 \
+&& solana balance  --url http://127.0.0.1:8999 \
+&& solana epoch-info  --url http://127.0.0.1:8999 \
+&& solana block-production --url http://127.0.0.1:8999  | grep -e " Identity Pubkey\|$(solana-keygen pubkey /home/solana-mb/solana/validator-keypair.json)" \
+&& solana validator-info get $SOLANA_VALIDATOR_INFO_PUBKEY  --url http://127.0.0.1:8999 \
+&& solana validators  --url http://127.0.0.1:8999 | grep -e "Identity Pubkey\|$SOLANA_ADDRESS" \
+&& echo "running: "$(curl -s -X POST -H "Content-Type: application/json" -d '{"jsonrpc":"2.0","id":1, "method":"getVersion"}' http://localhost:8999 | jq -r '.result."solana-core"' ); \
+echo "installed: "$(solana -V)
