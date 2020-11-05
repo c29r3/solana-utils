@@ -12,11 +12,6 @@ solana config set --url https://api.mainnet-beta.solana.com --keypair /home/sola
 solana balance; solana-gossip spy --entrypoint mainnet-beta.solana.com:8001
 
 
-### по-хорошему это конечно надо как-то автоматизировать, в сервис засунуть, еще как-то, но у них прямо так:
-### https://docs.solana.com/running-validator/validator-start#tune-system
-solana-sys-tuner --user $(whoami) > sys-tuner.log 2>&1 &
-
-
 ### create vote account - https://docs.solana.com/running-validator/validator-start#create-vote-account
 solana-keygen new -o vote-account-keypair.json && solana create-vote-account vote-account-keypair.json validator-keypair.json
 
