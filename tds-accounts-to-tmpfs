@@ -4,4 +4,5 @@ rm -rf validator-ledger/accounts/; \
 mkdir -p validator-ledger/accounts/; \
 echo "tmpfs /root/solana/validator-ledger/accounts tmpfs size=8000m 0 0" >> /etc/fstab; \
 mount -a; \
-systemctl start solana.service
+systemctl start solana.service; \
+journalctl -u solana -f --no-hostname
