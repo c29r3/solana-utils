@@ -27,6 +27,7 @@ ExecStart=/home/solana-mb/.local/share/solana/install/active_release/bin/solana-
   --vote-account /home/solana-mb/solana/vote-account-keypair.json \
   --gossip-port 8021 \
   --rpc-port 8999 \
+  --rpc-bind-address 127.0.0.1 \
   --log - \
   --private-rpc \
   --no-untrusted-rpc \
