@@ -44,18 +44,6 @@ solana stake-account validator-stake-keypair.json
 solana validator-info publish "<some name that will show up in explorer>" -n <keybase_username> -w "<website>"
 ### example:
 ###solana validator-info publish "Elvis Validator" -n elvis -w "https://elvis-validates.com"
-### solana validator-info publish "c29r3" -n not2day
+### solana validator-info publish "YOUR_MONIKER" -n YOUR_KEYBASE_USERNAME
 
 
-echo "export SOLANA_ADDRESS=$(solana-keygen pubkey /home/solana-mb/solana/validator-keypair.json)" | tee -a ~/.bashrc 
-echo export SOLANA_VALIDATOR_INFO_PUBKEY=$(solana validator-info get | grep "$(solana-keygen pubkey /home/solana-mb/solana/validator-keypair.json)" -A5 | grep "Info Pubkey" | awk '{ print $3}') && source ~/.bashrc
-
-clear \
-&& solana stakes /home/solana-mb/solana/vote-account-keypair.json  --url http://127.0.0.1:8999 \
-&& solana balance  --url http://127.0.0.1:8999 \
-&& solana epoch-info  --url http://127.0.0.1:8999 \
-&& solana block-production --url http://127.0.0.1:8999  | grep -e " Identity Pubkey\|$(solana-keygen pubkey /home/solana-mb/solana/validator-keypair.json)" \
-&& solana validator-info get $SOLANA_VALIDATOR_INFO_PUBKEY  --url http://127.0.0.1:8999 \
-&& solana validators  --url http://127.0.0.1:8999 | grep -e "Identity Pubkey\|$SOLANA_ADDRESS" \
-&& echo "running: "$(curl -s -X POST -H "Content-Type: application/json" -d '{"jsonrpc":"2.0","id":1, "method":"getVersion"}' http://localhost:8999 | jq -r '.result."solana-core"' ); \
-echo "installed: "$(solana -V)
