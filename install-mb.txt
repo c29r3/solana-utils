@@ -1,6 +1,6 @@
 mkdir -p /home/solana-mb/solana; cd /home/solana-mb/solana
 
-### положить validator-keypair.json в ~/solana/
+### put validator-keypair.json into ~/solana/
 
 curl -sSf https://raw.githubusercontent.com/solana-labs/solana/v1.1.9/install/solana-install-init.sh | sh -s - v1.3.19; \
 echo 'export PATH="/home/solana-mb/.local/share/solana/install/active_release/bin:$PATH"' >> /home/solana-mb/.profile; \
@@ -16,11 +16,11 @@ solana balance; solana-gossip spy --entrypoint mainnet-beta.solana.com:8001
 solana-keygen new -o vote-account-keypair.json && solana create-vote-account vote-account-keypair.json validator-keypair.json
 
 
-### запускаем сервис и убеждаемся по логам что всё ок
+### start the service and make sure that everything is OK
 sudo systemctl start solana-mb && sudo journalctl -u solana-mb -f --no-hostname
 
 
-### ждём синхронизации
+### wait for sync
 while true; do echo "______________ $(TZ=UTC date) ______________"; du -sh ~/solana/validator-ledger/ 2>/dev/null; timeout 30 solana catchup ~/solana/validator-keypair.json http://127.0.0.1:8999/ || echo timeout; timeout 30 solana block-production --url http://127.0.0.1:8999 --epoch $(solana epoch )  | grep -e " Identity Pubkey\|$(solana-keygen pubkey ~/solana/validator-keypair.json)"; sleep 60; done
 
 
