@@ -40,10 +40,10 @@ solana vote-account vote-account-keypair.json
 solana stake-account validator-stake-keypair.json
 
 
-### publish info about validator
+### publish info about validator (optional)
 solana validator-info publish "<some name that will show up in explorer>" -n <keybase_username> -w "<website>"
 ### example:
-###solana validator-info publish "Elvis Validator" -n elvis -w "https://elvis-validates.com"
+### solana validator-info publish "Elvis Validator" -n elvis -w "https://elvis-validates.com"
 ### solana validator-info publish "YOUR_MONIKER" -n YOUR_KEYBASE_USERNAME
 
 
