@@ -21,7 +21,11 @@ sudo systemctl start solana-mb && sudo journalctl -u solana-mb -f --no-hostname
 
 
 ### wait for sync
-while true; do echo "______________ $(TZ=UTC date) ______________"; du -sh ~/solana/validator-ledger/ 2>/dev/null; timeout 30 solana catchup ~/solana/validator-keypair.json http://127.0.0.1:8999/ || echo timeout; timeout 30 solana block-production --url http://127.0.0.1:8999 --epoch $(solana epoch )  | grep -e " Identity Pubkey\|$(solana-keygen pubkey ~/solana/validator-keypair.json)"; sleep 60; done
+while true; do echo "______________ $(TZ=UTC date) ______________"; \
+du -sh ~/solana/validator-ledger/ 2>/dev/null; \
+timeout 30 solana catchup ~/solana/validator-keypair.json http://127.0.0.1:8999/ || echo timeout; \
+timeout 30 solana block-production --url http://127.0.0.1:8999 --epoch $(solana epoch )  | grep -e " Identity Pubkey\|$(solana-keygen pubkey ~/solana/validator-keypair.json)"; \
+sleep 60; done
 
 
 ### create stake keypair - https://docs.solana.com/running-validator/validator-stake#create-stake-keypair
