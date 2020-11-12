@@ -41,8 +41,7 @@ ExecStart=/root/.local/share/solana/install/active_release/bin/solana-validator 
   --expected-shred-version 40443 \
   --entrypoint 35.203.170.30:8001 \
   --trusted-validator 5D1fNXzvv5NjV1ysLjirC4WY92RNsVH18vjmcszZd8on \
-  --expected-genesis-hash 4uhcVJyU9pJkvQyS88uRDiswHXSCkY3zQawwpjk2NsNY \
-  --no-snapshot-fetch
+  --expected-genesis-hash 4uhcVJyU9pJkvQyS88uRDiswHXSCkY3zQawwpjk2NsNY
   
 
 [Install]
