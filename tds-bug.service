@@ -7,41 +7,27 @@ StartLimitIntervalSec=0
 Type=simple
 Restart=always
 RestartSec=1
-User=root
-LimitNOFILE=900000
-LogRateLimitIntervalSec=0
-CPUWeight=20
-CPUQuota=450%
-
-Environment="SOLANA_METRICS_CONFIG='host=https://metrics.solana.com:8086,db=tds,u=testnet_write,p=c4fa841aa918bf8274e3e2a44d77568d9861b3ea'"
-Environment="RUST_LOG=solana=info"
-Environment="ENTRYPOINT=35.203.170.30:8001"
-Environment="EXPECTED_GENESIS_HASH=4uhcVJyU9pJkvQyS88uRDiswHXSCkY3zQawwpjk2NsNY"
-Environment="EXPECTED_BANK_HASH=8osXYbYF7drjZAJedHuwB8A56t7Pwa6bZbtCjiVhJBbT"
-Environment="SUPERMAJORITY=21453984"
-Environment="EXPECTED_SHRED_VERSION=1579"
-Environment="TRUSTED_VALIDATOR1=5D1fNXzvv5NjV1ysLjirC4WY92RNsVH18vjmcszZd8on"
-Environment="TRUSTED_VALIDATOR2=Ft5fbkqNa76vnsjYNwjDZUXoTWpP7VYm3mtsaQckQADN"
-Environment="TRUSTED_VALIDATOR3=9QxCLckBiJc783jnMvXZubK4wH86Eqqvashtrwvcsgkv"
-Environment="TRUSTED_VALIDATOR4=ta1Uvfb7W5BRPrdGnhP9RmeCGKzBySGM1hTE4rBRy6T"
-
+LimitNOFILE=1024000
+Environment="SOLANA_METRICS_CONFIG='host=https://metrics.solana.com:8086,db=tds,u=tds_writer,p=dry_run'"
 ExecStart=/root/.local/share/solana/install/active_release/bin/solana-validator \
-  --ledger /root/solana/validator-ledger \
-  --dynamic-port-range 8001-8020 \
-  --identity /root/solana/validator-keypair.json \
-  --vote-account /root/solana/vote-account-keypair.json \
-  --gossip-port 8001 \
-  --rpc-port 8899 \
-  --log - \
-  --private-rpc \
-  --no-untrusted-rpc \
-  --rpc-bind-address 127.0.0.1 \
-  --limit-ledger-size \
-  --expected-bank-hash J9A2YBpoJbCSSiF8eeYD4yt41wPT5MCNSJzgQexGLbF1 \
-  --expected-shred-version 40443 \
-  --entrypoint 35.203.170.30:8001 \
-  --trusted-validator 5D1fNXzvv5NjV1ysLjirC4WY92RNsVH18vjmcszZd8on \
-  --expected-genesis-hash 4uhcVJyU9pJkvQyS88uRDiswHXSCkY3zQawwpjk2NsNY
+--wait-for-supermajority 46765918 \
+--expected-bank-hash J9A2YBpoJbCSSiF8eeYD4yt41wPT5MCNSJzgQexGLbF1 \
+--expected-shred-version 40443 \
+--hard-fork 46765918 \
+--hard-fork 46765918 \
+--entrypoint 35.203.170.30:8001 \
+--rpc-bind-address 127.0.0.1 \
+--trusted-validator 5D1fNXzvv5NjV1ysLjirC4WY92RNsVH18vjmcszZd8on \
+--expected-genesis-hash 4uhcVJyU9pJkvQyS88uRDiswHXSCkY3zQawwpjk2NsNY \
+--no-snapshot-fetch \
+--no-check-vote-account \
+--no-untrusted-rpc \
+--limit-ledger-size 50000000 \
+--identity /root/solana/validator-keypair.json        \
+--vote-account /root/solana/vote-account-keypair.json \
+--ledger /root/solana/validator-ledger \
+--rpc-port 8899 \
+--log -
   
 
 [Install]
