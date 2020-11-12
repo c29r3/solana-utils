@@ -37,13 +37,15 @@ ExecStart=/root/.local/share/solana/install/active_release/bin/solana-validator 
   --no-untrusted-rpc \
   --rpc-bind-address 127.0.0.1 \
   --limit-ledger-size \
+  --wait-for-supermajority 46765918 \
   --expected-bank-hash J9A2YBpoJbCSSiF8eeYD4yt41wPT5MCNSJzgQexGLbF1 \
   --expected-shred-version 40443 \
+  --hard-fork 46765918 \
+  --hard-fork 46765918 \
   --entrypoint 35.203.170.30:8001 \
   --trusted-validator 5D1fNXzvv5NjV1ysLjirC4WY92RNsVH18vjmcszZd8on \
-  --expected-genesis-hash 4uhcVJyU9pJkvQyS88uRDiswHXSCkY3zQawwpjk2NsNY \
-  --hard-fork 46765918 \
-  --hard-fork 46765918
+  --expected-genesis-hash 4uhcVJyU9pJkvQyS88uRDiswHXSCkY3zQawwpjk2NsNY
+  
   
 
 [Install]
