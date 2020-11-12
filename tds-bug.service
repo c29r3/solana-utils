@@ -37,7 +37,6 @@ ExecStart=/root/.local/share/solana/install/active_release/bin/solana-validator 
   --no-untrusted-rpc \
   --rpc-bind-address 127.0.0.1 \
   --limit-ledger-size \
-  --entrypoint 35.203.170.30:8001 \
   --expected-bank-hash J9A2YBpoJbCSSiF8eeYD4yt41wPT5MCNSJzgQexGLbF1 \
   --expected-shred-version 40443 \
   --entrypoint 35.203.170.30:8001 \
