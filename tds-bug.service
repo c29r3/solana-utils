@@ -36,7 +36,7 @@ ExecStart=/root/.local/share/solana/install/active_release/bin/solana-validator 
   --private-rpc \
   --no-untrusted-rpc \
   --rpc-bind-address 127.0.0.1 \
-  --limit-ledger-size \
+  --limit-ledger-size 50000000 \
   --wait-for-supermajority 46765918 \
   --expected-bank-hash J9A2YBpoJbCSSiF8eeYD4yt41wPT5MCNSJzgQexGLbF1 \
   --expected-shred-version 40443 \
