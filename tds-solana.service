@@ -9,7 +9,6 @@ Restart=always
 RestartSec=1
 User=root
 LimitNOFILE=900000
-LogRateLimitIntervalSec=0
 CPUWeight=20
 CPUQuota=450%
 
