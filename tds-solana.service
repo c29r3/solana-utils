@@ -16,9 +16,9 @@ Environment="SOLANA_METRICS_CONFIG='host=https://metrics.solana.com:8086,db=tds,
 Environment="RUST_LOG=solana=info"
 Environment="ENTRYPOINT=35.203.170.30:8001"
 Environment="EXPECTED_GENESIS_HASH=4uhcVJyU9pJkvQyS88uRDiswHXSCkY3zQawwpjk2NsNY"
-Environment="EXPECTED_BANK_HASH=8osXYbYF7drjZAJedHuwB8A56t7Pwa6bZbtCjiVhJBbT"
-Environment="SUPERMAJORITY=21453984"
-Environment="EXPECTED_SHRED_VERSION=1579"
+Environment="EXPECTED_BANK_HASH=J9A2YBpoJbCSSiF8eeYD4yt41wPT5MCNSJzgQexGLbF1"
+Environment="SUPERMAJORITY=46765918"
+Environment="EXPECTED_SHRED_VERSION=40443"
 Environment="TRUSTED_VALIDATOR1=5D1fNXzvv5NjV1ysLjirC4WY92RNsVH18vjmcszZd8on"
 Environment="TRUSTED_VALIDATOR2=Ft5fbkqNa76vnsjYNwjDZUXoTWpP7VYm3mtsaQckQADN"
 Environment="TRUSTED_VALIDATOR3=9QxCLckBiJc783jnMvXZubK4wH86Eqqvashtrwvcsgkv"
@@ -39,7 +39,7 @@ ExecStart=/root/.local/share/solana/install/active_release/bin/solana-validator 
   --entrypoint ${ENTRYPOINT} \
   --expected-genesis-hash ${EXPECTED_GENESIS_HASH} \
   --expected-shred-version ${EXPECTED_SHRED_VERSION} \
-  --trusted-validator ${TRUSTED_VALIDATOR1} \
+  --trusted-validator ${TRUSTED_VALIDATOR1}
   
   
 [Install]
