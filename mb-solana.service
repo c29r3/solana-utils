@@ -8,7 +8,7 @@ Type=simple
 Restart=always
 RestartSec=5
 User=solana-mb
-LimitNOFILE=5000000
+LimitNOFILE=2048000
 
 Environment="SOLANA_METRICS_CONFIG="host=https://metrics.solana.com:8086,db=mainnet-beta,u=mainnet-beta_write,p=password""
 Environment="RUST_LOG=solana=info"
