@@ -25,7 +25,7 @@ Environment="TRUSTED_VALIDATOR2=Ft5fbkqNa76vnsjYNwjDZUXoTWpP7VYm3mtsaQckQADN"
 Environment="TRUSTED_VALIDATOR3=9QxCLckBiJc783jnMvXZubK4wH86Eqqvashtrwvcsgkv"
 Environment="TRUSTED_VALIDATOR4=ta1Uvfb7W5BRPrdGnhP9RmeCGKzBySGM1hTE4rBRy6T"
 
-ExecStart=/home/ubuntu/.local/share/solana/install/active_release/bin/solana-validator \
+ExecStart=/root/.local/share/solana/install/active_release/bin/solana-validator \
 --expected-shred-version 13283 \
 --entrypoint entrypoint.testnet.solana.com:8001 \
 --wait-for-supermajority 50438183 \
@@ -35,9 +35,9 @@ ExecStart=/home/ubuntu/.local/share/solana/install/active_release/bin/solana-val
 --expected-genesis-hash 4uhcVJyU9pJkvQyS88uRDiswHXSCkY3zQawwpjk2NsNY \
 --no-untrusted-rpc \
 --limit-ledger-size 50000000 \
---identity /home/ubuntu/validator-keypair.json \
---vote-account /home/ubuntu/vote-account-keypair.json \
---ledger /home/ubuntu/validator-ledger \
+--identity /root/solana/validator-keypair.json \
+--vote-account /root/solana/vote-account-keypair.json \
+--ledger /root/solana/validator-ledger \
 --gossip-port 8001 \
 --rpc-port 8899 \
 --log -
