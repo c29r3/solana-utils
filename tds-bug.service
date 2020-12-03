@@ -25,26 +25,22 @@ Environment="TRUSTED_VALIDATOR2=Ft5fbkqNa76vnsjYNwjDZUXoTWpP7VYm3mtsaQckQADN"
 Environment="TRUSTED_VALIDATOR3=9QxCLckBiJc783jnMvXZubK4wH86Eqqvashtrwvcsgkv"
 Environment="TRUSTED_VALIDATOR4=ta1Uvfb7W5BRPrdGnhP9RmeCGKzBySGM1hTE4rBRy6T"
 
-ExecStart=/root/.local/share/solana/install/active_release/bin/solana-validator \
-  --ledger /root/solana/validator-ledger \
-  --dynamic-port-range 8001-8020 \
-  --identity /root/solana/validator-keypair.json \
-  --vote-account /root/solana/vote-account-keypair.json \
-  --gossip-port 8001 \
-  --rpc-port 8899 \
-  --log - \
-  --private-rpc \
-  --no-untrusted-rpc \
-  --rpc-bind-address 127.0.0.1 \
-  --limit-ledger-size 50000000 \
-  --wait-for-supermajority 46765918 \
-  --expected-bank-hash J9A2YBpoJbCSSiF8eeYD4yt41wPT5MCNSJzgQexGLbF1 \
-  --expected-shred-version 40443 \
-  --hard-fork 46765918 \
-  --hard-fork 46765918 \
-  --entrypoint 35.203.170.30:8001 \
-  --trusted-validator 5D1fNXzvv5NjV1ysLjirC4WY92RNsVH18vjmcszZd8on \
-  --expected-genesis-hash 4uhcVJyU9pJkvQyS88uRDiswHXSCkY3zQawwpjk2NsNY
+ExecStart=/home/ubuntu/.local/share/solana/install/active_release/bin/solana-validator \
+--expected-shred-version 13283 \
+--entrypoint entrypoint.testnet.solana.com:8001 \
+--wait-for-supermajority 50438183 \
+--hard-fork 50438183 \
+--expected-bank-hash A9YvWjYBuk4soBaCh3S8WKo1drMfPpTiAmPMEDkDuTJ \
+--trusted-validator 5D1fNXzvv5NjV1ysLjirC4WY92RNsVH18vjmcszZd8on \
+--expected-genesis-hash 4uhcVJyU9pJkvQyS88uRDiswHXSCkY3zQawwpjk2NsNY \
+--no-untrusted-rpc \
+--limit-ledger-size 50000000 \
+--identity /home/ubuntu/validator-keypair.json \
+--vote-account /home/ubuntu/vote-account-keypair.json \
+--ledger /home/ubuntu/validator-ledger \
+--gossip-port 8001 \
+--rpc-port 8899 \
+--log -
   
   
 
