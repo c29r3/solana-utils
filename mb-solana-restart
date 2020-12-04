@@ -37,8 +37,6 @@ ExecStart=/home/solana-mb/.local/share/solana/install/active_release/bin/solana-
   --expected-genesis-hash ${EXPECTED_GENESIS_HASH} \
   --expected-shred-version 13490 \
   --wait-for-supermajority 53180900 \
-  --no-snapshot-fetch \
-  --no-genesis-fetch \
   --no-check-vote-account \
   --trusted-validator ${TRUSTED_VALIDATOR1} \
   --trusted-validator ${TRUSTED_VALIDATOR2} \
