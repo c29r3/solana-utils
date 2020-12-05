@@ -26,9 +26,9 @@ ExecStart=/root/.local/share/solana/install/active_release/bin/solana-validator 
 --expected-genesis-hash 4uhcVJyU9pJkvQyS88uRDiswHXSCkY3zQawwpjk2NsNY \
 --no-untrusted-rpc \
 --limit-ledger-size 50000000 \
---identity /root/solanavl/validator-keypair.json \
---vote-account /root/solanavl/vote-account-keypair.json \
---ledger /root/solanavl/validator-ledger \
+--identity /root/solana/validator-keypair.json \
+--vote-account /root/solana/vote-account-keypair.json \
+--ledger /root/solana/validator-ledger \
 --gossip-port 8001 \
 --rpc-port 8899 \
 --log -
