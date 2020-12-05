@@ -27,11 +27,11 @@ Environment="TRUSTED_VALIDATOR3=9QxCLckBiJc783jnMvXZubK4wH86Eqqvashtrwvcsgkv"
 Environment="TRUSTED_VALIDATOR4=ta1Uvfb7W5BRPrdGnhP9RmeCGKzBySGM1hTE4rBRy6T"
 
 ExecStart=/root/.local/share/solana/install/active_release/bin/solana-validator \
---expected-shred-version 51978 \       # <-- NEW! IMPORTANT!
+--expected-shred-version 51978 \
 --entrypoint entrypoint.testnet.solana.com:8001 \
---wait-for-supermajority 50438115 \     # <-- NEW! IMPORTANT! REMOVE AFTER THIS RESTART
+--wait-for-supermajority 50438115 \
 --hard-fork 50438183 \
---expected-bank-hash 7JaaAeMLWHm2Gx5c8geTwzwH4zFnRPChUeezhSsAkSHC \  # <-- NEW! IMPORTANT! REMOVE AFTER THIS RESTART
+--expected-bank-hash 7JaaAeMLWHm2Gx5c8geTwzwH4zFnRPChUeezhSsAkSHC \
 --trusted-validator 5D1fNXzvv5NjV1ysLjirC4WY92RNsVH18vjmcszZd8on \
 --expected-genesis-hash 4uhcVJyU9pJkvQyS88uRDiswHXSCkY3zQawwpjk2NsNY \
 --no-untrusted-rpc \
