@@ -16,16 +16,16 @@ MemoryMax=12G
 
 Environment="SOLANA_METRICS_CONFIG="host=https://metrics.solana.com:8086,db=tds,u=testnet_write,p=c4fa841aa918bf8274e3e2a44d77568d9861b3ea"
 ExecStart=/root/.local/share/solana/install/active_release/bin/solana-validator \
---expected-shred-version 13283 \
---entrypoint 35.203.170.30:8001 \
---wait-for-supermajority 50438183 \
+--expected-shred-version 9326 \
+--entrypoint entrypoint.testnet.solana.com:8001 \
+--wait-for-supermajority 51302118 \
 --hard-fork 50438183 \
 --no-snapshot-fetch \
---expected-bank-hash A9YvWjYBuk4soBaCh3S8WKo1drMfPpTiAmPMEDkDuTJ \
+--expected-bank-hash MvXoiNb9LGnbCnnJ3jVmjyKRVFjizF8fZrRkKhSEbeq \
 --trusted-validator 5D1fNXzvv5NjV1ysLjirC4WY92RNsVH18vjmcszZd8on \
 --expected-genesis-hash 4uhcVJyU9pJkvQyS88uRDiswHXSCkY3zQawwpjk2NsNY \
 --no-untrusted-rpc \
---limit-ledger-size 50000000 \
+--limit-ledger-size \
 --identity /root/solana/validator-keypair.json \
 --vote-account /root/solana/vote-account-keypair.json \
 --ledger /root/solana/validator-ledger \
