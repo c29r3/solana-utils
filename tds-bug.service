@@ -20,7 +20,6 @@ ExecStart=/root/.local/share/solana/install/active_release/bin/solana-validator 
 --entrypoint entrypoint.testnet.solana.com:8001 \
 --wait-for-supermajority 51302118 \
 --hard-fork 50438183 \
---no-snapshot-fetch \
 --expected-bank-hash MvXoiNb9LGnbCnnJ3jVmjyKRVFjizF8fZrRkKhSEbeq \
 --trusted-validator 5D1fNXzvv5NjV1ysLjirC4WY92RNsVH18vjmcszZd8on \
 --expected-genesis-hash 4uhcVJyU9pJkvQyS88uRDiswHXSCkY3zQawwpjk2NsNY \
