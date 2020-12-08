@@ -22,7 +22,7 @@ Environment="TRUSTED_VALIDATOR4=7Np41oeYqPefeNQEHSv1UDhYrehxin3NStELsSKCT4K2"
 
 ExecStart=/home/solana-mb/.local/share/solana/install/active_release/bin/solana-validator \
   --ledger /home/solana-mb/solana/validator-ledger \
-  --dynamic-port-range 8021-8031 \
+  --dynamic-port-range 8021-8041 \
   --identity /home/solana-mb/solana/validator-keypair.json \
   --vote-account /home/solana-mb/solana/vote-account-keypair.json \
   --gossip-port 8021 \
@@ -39,7 +39,8 @@ ExecStart=/home/solana-mb/.local/share/solana/install/active_release/bin/solana-
   --trusted-validator ${TRUSTED_VALIDATOR1} \
   --trusted-validator ${TRUSTED_VALIDATOR2} \
   --trusted-validator ${TRUSTED_VALIDATOR3} \
-  --trusted-validator ${TRUSTED_VALIDATOR4}
+  --trusted-validator ${TRUSTED_VALIDATOR4} \
+  --expected-bank-hash Fi4p8z3AkfsuGXZzQ4TD28N8QDNSWC7ccqAqTs2GPdPu
 
 [Install]
 WantedBy=multi-user.target
