@@ -21,7 +21,7 @@ EOF"; \
 sudo sysctl -p /etc/sysctl.d/20-solana-udp-buffers.conf
 
 
-echo vm.max_map_count=5000000 >> /etc/sysctl.conf; \
+echo vm.max_map_count=500000 >> /etc/sysctl.conf; \
 sysctl -p
 
 
