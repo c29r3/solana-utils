@@ -39,6 +39,15 @@ echo $(cat /home/solana-mb/pwd.txt) | sudo -S systemctl daemon-reload; \
 echo $(cat /home/solana-mb/pwd.txt) | sudo -S systemctl enable solana-mb.service; \
 solana config set --url https://api.mainnet-beta.solana.com --keypair /home/solana-mb/solana/validator-keypair.json
 
+echo $(cat /home/solana-mb/pwd.txt) | sudo -S systemctl stop solana-mb.service; \
+cd /home/solana-mb/solana/; \
+rm -rf validator-ledger/accounts/; \
+mkdir -p validator-ledger/accounts/; \
+echo $(cat /home/solana-mb/pwd.txt) | sudo -S echo "tmpfs /home/solana-mb/solana/validator-ledger/accounts tmpfs size=90000m 0 0" >> /etc/fstab; \
+echo $(cat /home/solana-mb/pwd.txt) | sudo -S mount -a; \
+echo $(cat /home/solana-mb/pwd.txt) | sudo -S systemctl start solana-mb.service; \
+journalctl -u solana-mb -f --no-hostname
+
 
 ### create vote account - https://docs.solana.com/running-validator/validator-start#create-vote-account
 solana-keygen new -o vote-account-keypair.json && solana create-vote-account vote-account-keypair.json validator-keypair.json
