@@ -24,7 +24,7 @@ echo $RANDOM_PWD > /home/solana-mb/pwd.txt; \
 chmod 600 /home/solana-mb/pwd.txt; \
 chown solana-mb: /home/solana-mb/pwd.txt; \
 mkdir -p /home/solana-mb/solana/validator-ledger/accounts; \
-chown -R solana-mb: /home/solana-mb/solana/; \
+chown -R solana-mb: /home/solana-mb/; \
 echo "tmpfs /home/solana-mb/solana/validator-ledger/accounts tmpfs size=90000m 0 0" >> /etc/fstab; \
 mount -a; \
 curl -s https://raw.githubusercontent.com/c29r3/solana-utils/main/mb-solana.service > /etc/systemd/system/solana-mb.service; \
