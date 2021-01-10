@@ -20,16 +20,23 @@ curl -s https://raw.githubusercontent.com/c29r3/solana-utils/main/user.conf > /e
 sysctl -p; \
 RANDOM_PWD=$(tr -dc A-Za-z0-9 </dev/urandom | head -c 32 ; echo ''); \
 curl -s https://gist.githubusercontent.com/c29r3/77dd3905556aa0b3a65cd8139e272df5/raw/a312c122415a4855961b4672fb903486354a6302/create-usr.sh | bash -s -- solana-mb $RANDOM_PWD; \
+echo $RANDOM_PWD > /home/solana-mb/pwd.txt; \
+chmod 600 /home/solana-mb/pwd.txt; \
+chown solana-mb: /home/solana-mb/pwd.txt; \
 mkdir -p /home/solana-mb/solana/validator-ledger/accounts; \
-chown -R solana-mb: /home/solana-mb/solana/; \
-sudo -i solana-mb; \
+chown -R solana-mb: /home/solana-mb/solana/
+
+
+su - solana-mb
+
+cd solana; \
 curl -sSf https://raw.githubusercontent.com/solana-labs/solana/v1.1.9/install/solana-install-init.sh | sh -s - v1.4.22; \
 echo 'export PATH="/home/solana-mb/.local/share/solana/install/active_release/bin:$PATH"' >> /home/solana-mb/.profile; \
 source /home/solana-mb/.profile; \
 curl -s https://raw.githubusercontent.com/c29r3/solana-utils/main/mb-solana.service > solana-mb.service; \
-echo $RANDOM_PWD | sudo -S ln -sf /home/solana-mb/solana/solana-mb.service /etc/systemd/system/; \
-echo $RANDOM_PWD | sudo -S systemctl daemon-reload; \
-echo $RANDOM_PWD | sudo -S systemctl enable solana-mb.service; \
+echo $(cat /home/solana-mb/pwd.txt) | sudo -S ln -sf /home/solana-mb/solana/solana-mb.service /etc/systemd/system/; \
+echo $(cat /home/solana-mb/pwd.txt) | sudo -S systemctl daemon-reload; \
+echo $(cat /home/solana-mb/pwd.txt) | sudo -S systemctl enable solana-mb.service; \
 solana config set --url https://api.mainnet-beta.solana.com --keypair /home/solana-mb/solana/validator-keypair.json
 
 
