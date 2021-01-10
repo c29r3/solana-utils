@@ -2,27 +2,35 @@ mkdir -p /home/solana-mb/solana; cd /home/solana-mb/solana
 
 ### put validator-keypair.json into ~/solana/
 
-curl -sSf https://raw.githubusercontent.com/solana-labs/solana/v1.1.9/install/solana-install-init.sh | sh -s - v1.3.19; \
-echo 'export PATH="/home/solana-mb/.local/share/solana/install/active_release/bin:$PATH"' >> /home/solana-mb/.profile; \
-source /home/solana-mb/.profile; \
-curl -s https://raw.githubusercontent.com/c29r3/solana-utils/main/mb-solana.service > solana-mb.service; \
-sudo ln -sf /home/solana-mb/solana/solana-mb.service /etc/systemd/system/; \
-sudo systemctl daemon-reload && sudo systemctl enable solana-mb.service; \
-solana config set --url https://api.mainnet-beta.solana.com --keypair /home/solana-mb/solana/validator-keypair.json; \
-solana balance; solana-gossip spy --entrypoint mainnet-beta.solana.com:8001
+# install exporter
+curl -s https://gist.githubusercontent.com/c29r3/ca43c4e08daebbfcdb46779c57ac62b9/raw/203841210c488059d81e19d964113ea74db2cca1/node_exporter.sh | bash
 
-sudo bash -c "cat >/etc/sysctl.d/20-solana-udp-buffers.conf <<EOF
+
+bash -c "cat >/etc/sysctl.d/20-solana-udp-buffers.conf <<EOF
 # Increase UDP buffer size
 net.core.rmem_default = 134217728
 net.core.rmem_max = 134217728
 net.core.wmem_default = 134217728
 net.core.wmem_max = 134217728
 EOF"; \
-sudo sysctl -p /etc/sysctl.d/20-solana-udp-buffers.conf
-
-
-echo vm.max_map_count=500000 >> /etc/sysctl.conf; \
-sysctl -p
+curl -s https://raw.githubusercontent.com/c29r3/solana-utils/main/limits.conf > /etc/security/limits.conf; \
+curl -s https://raw.githubusercontent.com/c29r3/solana-utils/main/sysctl.conf > /etc/sysctl.conf; \
+curl -s https://raw.githubusercontent.com/c29r3/solana-utils/main/system.conf > /etc/systemd/system.conf; \
+curl -s https://raw.githubusercontent.com/c29r3/solana-utils/main/user.conf > /etc/systemd/user.conf; \
+sysctl -p; \
+RANDOM_PWD=$(tr -dc A-Za-z0-9 </dev/urandom | head -c 32 ; echo ''); \
+curl -s https://gist.githubusercontent.com/c29r3/77dd3905556aa0b3a65cd8139e272df5/raw/a312c122415a4855961b4672fb903486354a6302/create-usr.sh | bash -s -- solana-mb $RANDOM_PWD; \
+mkdir -p /home/solana-mb/solana/validator-ledger/accounts; \
+chown -R solana-mb: /home/solana-mb/solana/; \
+sudo -i solana-mb; \
+curl -sSf https://raw.githubusercontent.com/solana-labs/solana/v1.1.9/install/solana-install-init.sh | sh -s - v1.4.22; \
+echo 'export PATH="/home/solana-mb/.local/share/solana/install/active_release/bin:$PATH"' >> /home/solana-mb/.profile; \
+source /home/solana-mb/.profile; \
+curl -s https://raw.githubusercontent.com/c29r3/solana-utils/main/mb-solana.service > solana-mb.service; \
+echo $RANDOM_PWD | sudo -S ln -sf /home/solana-mb/solana/solana-mb.service /etc/systemd/system/; \
+echo $RANDOM_PWD | sudo -S systemctl daemon-reload; \
+echo $RANDOM_PWD | sudo -S systemctl enable solana-mb.service; \
+solana config set --url https://api.mainnet-beta.solana.com --keypair /home/solana-mb/solana/validator-keypair.json
 
 
 ### create vote account - https://docs.solana.com/running-validator/validator-start#create-vote-account
