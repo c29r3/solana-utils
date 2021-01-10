@@ -39,7 +39,6 @@ cd solana; \
 curl -sSf https://raw.githubusercontent.com/solana-labs/solana/v1.1.9/install/solana-install-init.sh | sh -s - v1.4.22; \
 echo 'export PATH="/home/solana-mb/.local/share/solana/install/active_release/bin:$PATH"' >> /home/solana-mb/.profile; \
 source /home/solana-mb/.profile; \
-curl -s https://raw.githubusercontent.com/c29r3/solana-utils/main/mb-solana.service > solana-mb.service; \
 solana config set --url https://api.mainnet-beta.solana.com --keypair /home/solana-mb/solana/validator-keypair.json; \
 echo $(cat /home/solana-mb/pwd.txt) | sudo -S systemctl start solana-mb.service
 
