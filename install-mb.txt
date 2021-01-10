@@ -23,7 +23,7 @@ curl -s https://gist.githubusercontent.com/c29r3/77dd3905556aa0b3a65cd8139e272df
 echo $RANDOM_PWD > /home/solana-mb/pwd.txt; \
 chmod 600 /home/solana-mb/pwd.txt; \
 chown solana-mb: /home/solana-mb/pwd.txt; \
-mkdir -p /home/solana-mb/solana/validator-ledger; \
+mkdir -p /home/solana-mb/solana/validator-ledger/accounts; \
 chown -R solana-mb: /home/solana-mb/solana/; \
 echo "tmpfs /home/solana-mb/solana/validator-ledger/accounts tmpfs size=90000m 0 0" >> /etc/fstab; \
 mount -a; \
