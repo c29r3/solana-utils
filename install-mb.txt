@@ -33,7 +33,7 @@ systemctl daemon-reload; \
 systemctl enable solana-mb.service
 
 
-su solana-mb
+su - solana-mb
 
 cd ~/solana; \
 curl -sSf https://raw.githubusercontent.com/solana-labs/solana/v1.1.9/install/solana-install-init.sh | sh -s - v1.4.22; \
