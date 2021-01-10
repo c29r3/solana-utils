@@ -3,7 +3,7 @@ cd /home/solana-mb/solana/; \
 rm -rf validator-ledger/accounts/; \
 mkdir -p validator-ledger/accounts/; \
 chown -R solana-mb: /home/solana-mb/solana/ ; \
-echo "tmpfs /home/solana-mb/solana/validator-ledger/accounts tmpfs size=25000m 0 0" >> /etc/fstab; \
+echo "tmpfs /home/solana-mb/solana/validator-ledger/accounts tmpfs size=90000m 0 0" >> /etc/fstab; \
 mount -a; \
 systemctl start solana-mb.service; \
 journalctl -u solana-mb -f --no-hostname
