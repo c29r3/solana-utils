@@ -35,7 +35,7 @@ systemctl enable solana-mb.service
 
 su solana-mb
 
-cd solana; \
+cd ~/solana; \
 curl -sSf https://raw.githubusercontent.com/solana-labs/solana/v1.1.9/install/solana-install-init.sh | sh -s - v1.4.22; \
 echo 'export PATH="/home/solana-mb/.local/share/solana/install/active_release/bin:$PATH"' >> /home/solana-mb/.profile; \
 source /home/solana-mb/.profile; \
