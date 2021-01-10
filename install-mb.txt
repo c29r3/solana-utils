@@ -23,7 +23,7 @@ curl -s https://gist.githubusercontent.com/c29r3/77dd3905556aa0b3a65cd8139e272df
 echo $RANDOM_PWD > /home/solana-mb/pwd.txt; \
 chmod 600 /home/solana-mb/pwd.txt; \
 chown solana-mb: /home/solana-mb/pwd.txt; \
-mkdir -p /home/solana-mb/solana/validator-ledger/accounts; \
+mkdir -p /home/solana-mb/solana/validator-ledger; \
 chown -R solana-mb: /home/solana-mb/solana/
 
 
