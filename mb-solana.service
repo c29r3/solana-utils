@@ -40,7 +40,7 @@ ExecStart=/home/solana-mb/.local/share/solana/install/active_release/bin/solana-
   --trusted-validator ${TRUSTED_VALIDATOR2} \
   --trusted-validator ${TRUSTED_VALIDATOR3} \
   --trusted-validator ${TRUSTED_VALIDATOR4} \
-  --expected-bank-hash Fi4p8z3AkfsuGXZzQ4TD28N8QDNSWC7ccqAqTs2GPdPu \
+  --expected-bank-hash Fi4p8z3AkfsuGXZzQ4TD28N8QDNSWC7ccqAqTs2GPdPu
 #  --snapshot-interval-slots 0
 #  --accounts /home/solana-mb/solana/validator-ledger/accounts \
 #  --account-shrink-path /home/solana-mb/solana/validator-ledger/accounts-shrink
