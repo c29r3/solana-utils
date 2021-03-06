@@ -17,7 +17,8 @@ echo -e "\n\n" | ${BIN_FILE}-keygen new -o ${PROXY_KEYPAIR}
 solana transfer --keypair validator-keypair.json ${PROXY_KEYPAIR} ${BALANCE} --url ${RPC}
 sleep 10
 
+BALANCE=$(${BIN_FILE} balance ${PROXY_KEYPAIR} -u ${RPC} | cut -d " " -f1)
 SEND_AMOUNT=$(echo "${BALANCE} - $(seq 0 .0001 0.0005 | shuf | head -n1)" | bc)
 solana transfer --keypair ${PROXY_KEYPAIR} ${ADDR} ${SEND_AMOUNT} --url ${RPC}
 
-${BIN_FILE} balance ${PROXY_KEYPAIR} -u ${RPC} | cut -d " " -f1
+echo $(${BIN_FILE} balance ${PROXY_KEYPAIR} -u ${RPC} | cut -d " " -f1)
