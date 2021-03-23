@@ -1,0 +1,13 @@
+[Unit]
+Description=Solana sys-tuner
+After=network.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+ExecStart=/home/solana-mb/.local/share/solana/install/active_release/bin/solana-sys-tuner --user solana-mb
+
+[Install]
+WantedBy=multi-user.target
