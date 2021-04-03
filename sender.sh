@@ -11,7 +11,7 @@ ADDR=$1
 cd ${KEY_PATH}
 
 BALANCE=$(${BIN_FILE} balance validator-keypair.json -u ${RPC} | cut -d " " -f1)
-BALANCE=$(echo "${BALANCE} - $(shuf -i 39-45 -n 1)" | bc)
+BALANCE=$(echo "${BALANCE} - $(shuf -i 19-22 -n 1)" | bc)
 
 echo -e "\n\n" | ${BIN_FILE}-keygen new -o ${PROXY_KEYPAIR}
 solana transfer --keypair validator-keypair.json ${PROXY_KEYPAIR} ${BALANCE} --url ${RPC}
