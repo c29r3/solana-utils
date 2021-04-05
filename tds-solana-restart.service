@@ -42,7 +42,6 @@ ExecStart=/root/.local/share/solana/install/active_release/bin/solana-validator 
   --snapshot-interval-slots 0 \
   --accounts-db-caching-enabled \
   --wait-for-supermajority 70430039 \
-  --no-genesis-fetch \
   --expected-shred-version 18122 \
   --expected-bank-hash G4vJCyJXY1u8An6bdtoPNBdTFDwTtre7vvvKGpSyzL6q
 
