@@ -41,11 +41,10 @@ ExecStart=/root/.local/share/solana/install/active_release/bin/solana-validator 
   --account-shrink-path /root/solana/validator-ledger/accounts-shrink \
   --snapshot-interval-slots 0 \
   --accounts-db-caching-enabled \
-  --no-snapshot-fetch \
   --wait-for-supermajority 70430039 \
   --no-genesis-fetch \
-  --expected-bank-hash Ah4UKUDGb8KT99zY9qA5dtkKCqAkLqu3KX4cqS2i5piM \
-  --expected-shred-version 44943
+  --expected-shred-version 18122 \
+  --expected-bank-hash G4vJCyJXY1u8An6bdtoPNBdTFDwTtre7vvvKGpSyzL6q
 
 
 [Install]
