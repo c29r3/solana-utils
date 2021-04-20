@@ -36,7 +36,10 @@ ExecStart=/root/.local/share/solana/install/active_release/bin/solana-validator 
   --limit-ledger-size 50000000 \
   --entrypoint ${ENTRYPOINT} \
   --expected-genesis-hash ${EXPECTED_GENESIS_HASH} \
-  --trusted-validator ${TRUSTED_VALIDATOR1} \
+  --trusted-validator 5D1fNXzvv5NjV1ysLjirC4WY92RNsVH18vjmcszZd8on \
+  --trusted-validator 7XSY3MrYnK8vq693Rju17bbPkCN3Z7KvvfvJx4kdrsSY \
+  --trusted-validator Ft5fbkqNa76vnsjYNwjDZUXoTWpP7VYm3mtsaQckQADN \
+  --trusted-validator 9QxCLckBiJc783jnMvXZubK4wH86Eqqvashtrwvcsgkv \
   --accounts /root/solana/validator-ledger/accounts \
   --account-shrink-path /root/solana/validator-ledger/accounts-shrink \
   --snapshot-interval-slots 0 \
