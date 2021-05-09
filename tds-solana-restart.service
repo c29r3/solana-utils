@@ -42,7 +42,6 @@ ExecStart=/root/.local/share/solana/install/active_release/bin/solana-validator 
   --trusted-validator 9QxCLckBiJc783jnMvXZubK4wH86Eqqvashtrwvcsgkv \
   --accounts /root/solana/validator-ledger/accounts \
   --account-shrink-path /root/solana/validator-ledger/accounts-shrink \
-  --snapshot-interval-slots 0 \
   --accounts-db-caching-enabled \
   --wait-for-supermajority 70430039 \
   --expected-shred-version 18122 \
