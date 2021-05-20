@@ -19,6 +19,6 @@ sleep 10
 
 BALANCE=$(${BIN_FILE} balance ${PROXY_KEYPAIR} -u ${RPC} | cut -d " " -f1)
 SEND_AMOUNT=$(echo "${BALANCE} - $(seq 0 .0001 0.0005 | shuf | head -n1)" | bc)
-solana transfer --keypair ${PROXY_KEYPAIR} ${ADDR} ${SEND_AMOUNT} --url ${RPC}
+solana transfer --keypair ${PROXY_KEYPAIR} ${ADDR} ${SEND_AMOUNT} --url ${RPC} --allow-unfunded-recipient
 
 echo $(${BIN_FILE} balance ${PROXY_KEYPAIR} -u ${RPC} | cut -d " " -f1)
