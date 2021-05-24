@@ -19,6 +19,7 @@ Environment="TRUSTED_VALIDATOR1=CakcnaRDHka2gXyfbEd2d3xsvkJkqsLw2akB3zsN1D2S"
 Environment="TRUSTED_VALIDATOR2=DE1bawNcRJB9rVm3buyMVfr8mBEoyyu73NBovf2oXJsJ"
 Environment="TRUSTED_VALIDATOR3=GdnSyH3YtwcxFvQrVVJMm1JhTS4QVX7MFsX56uJLUfiZ"
 Environment="TRUSTED_VALIDATOR4=7Np41oeYqPefeNQEHSv1UDhYrehxin3NStELsSKCT4K2"
+Environment="RUST_LOG=info"
 
 ExecStart=/home/solana-mb/.local/share/solana/install/active_release/bin/solana-validator \
   --ledger /home/solana-mb/solana/validator-ledger \
@@ -40,10 +41,10 @@ ExecStart=/home/solana-mb/.local/share/solana/install/active_release/bin/solana-
   --trusted-validator ${TRUSTED_VALIDATOR2} \
   --trusted-validator ${TRUSTED_VALIDATOR3} \
   --trusted-validator ${TRUSTED_VALIDATOR4} \
-  --expected-bank-hash Fi4p8z3AkfsuGXZzQ4TD28N8QDNSWC7ccqAqTs2GPdPu
-#  --snapshot-interval-slots 0
-#  --accounts /home/solana-mb/solana/validator-ledger/accounts \
-#  --account-shrink-path /home/solana-mb/solana/validator-ledger/accounts-shrink
+  --expected-bank-hash Fi4p8z3AkfsuGXZzQ4TD28N8QDNSWC7ccqAqTs2GPdPu \
+  --snapshot-interval-slots 0
+#  --accounts /home/solana-mb/solana/validator-ledger/accounts 
+#  --account-shrink-path /home/solana-mb/solana/validator-ledger/accounts-shrink 
 
 [Install]
 WantedBy=multi-user.target
